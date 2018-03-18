@@ -75,7 +75,7 @@ Once you download this repository, *cd* into its directory using *bash*, open th
 
 Two or more words are said to be *contextually similar* when they appear beside a large number of mutual words. For instance, *"cat"* & *"dog"* are contextually similar as they are both animals, hence they share a large number of words they can appear beside.
 
-**Cosine Similarity** function (Cossim) is used to calcualte a score representing how contextually similar a pair of tokens are. It is between 0 and 1; the higher the score, stronger the similarity. For each word, it requires two vectors, *x* & *y*. Each vector contains counts of appearances beside each mutual words(context counts). Hence, the vectors are of length equivalent to the number of individual mutual words they appear beside. 
+**Cosine Similarity** function (Cossim) is used to calcualte a score representing how contextually similar a pair of tokens are. It is between 0 and 1; the higher the score, stronger the similarity. For each word, it requires two vectors, *x* & *y*. Each vector contains counts of appearances beside each mutual words **(context counts)**. Hence, the vectors are of length equivalent to the number of individual mutual words they appear beside. 
 
 ![Image](https://raw.githubusercontent.com/Tapojit/Polarity-of-words-and-contextual-similarity/master/COSSIM.png)
 
@@ -83,3 +83,34 @@ The script **distsim.py** contains a function called **cos_sim** for calculating
 1. Dictionary containing Bag of Words(BOW) representaion of context counts for each of the pair of words.
 2. First word.
 3. Second word.
+
+### Calculating Context Count
+
+**nytcounts.university_cat_dog.txt** contains context count BOWs for three words: "cat", "dog" & "university". Here are the instructions to calculate cosine similarities amongst these three words.
+
+Open the python console in *bash* while in the downloaded repository directory. Run the lines below:
+
+```
+>>> import distsim
+>>> word_to_ccdict = distsim.load_contexts("nytcounts.university_cat_dog")
+>>> cat_dog_sim=distsim.cos_sim(word_to_ccdict,'cat','dog')
+>>> cat_uni_sim=distsim.cos_sim(word_to_ccdict,'cat','university')
+>>> dog_uni_sim=distsim.cos_sim(word_to_ccdict,'university','dog')
+>>> print "\ncosine similarity between cat and dog: ", cat_dog_sim, "\n"
+>>> print "cosine similarity between cat and university: ", cat_uni_sim, "\n"
+>>> print "cosine similarity between university and dog: ", dog_uni_sim
+
+```
+Below are the printed outputs:
+
+```
+file nytcounts.university_cat_dog has contexts for 3 words
+
+cosine similarity between cat and dog:  0.966891672715 
+
+cosine similarity between cat and university:  0.660442421144 
+
+cosine similarity between university and dog:  0.659230248969
+
+```
+## Notes
