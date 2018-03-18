@@ -5,7 +5,7 @@ positive seed words. Also includes implementation of Cosine Similarity to determ
 
 ## Polarity
 
-The script **polarity.py** contains a function called **polarity_calc** which parses all space deliminated linguistic objects (eg: words) from tweets in the file *tweets.txt* and calculates a their polarity scores. Higher frequency of linguistic objects appearing near other negative objects mean they have lower polarity and vice versa for positive objects. Objects with negative polarity are mostly associated with negative objects and objects with positive polarity are mostly associated with positive objects.
+The script **polarity.py** contains a function called **polarity_calc** which parses all space deliminated linguistic objects (eg: words) from tweets in the file *tweets.txt* and calculates their polarity scores. Higher frequency of linguistic objects appearing near other negative objects mean they have lower polarity and vice versa for positive objects. Objects with negative polarity are mostly associated with negative objects and objects with positive polarity are mostly associated with positive objects.
 
 Below are two lists of positive and negative seed words used in this script to calculate polarity of words *near* to them:
 ```
@@ -75,7 +75,7 @@ Once you download this repository, *cd* into its directory using *bash*, open th
 
 Two or more words are said to be *contextually similar* when they appear beside a large number of mutual words. For instance, *"cat"* & *"dog"* are contextually similar as they are both animals, hence they share a large number of words they can appear beside.
 
-**Cosine Similarity** function (Cossim) is used to calcualte a score representing how contextually similar a pair of tokens are. It is between 0 and 1; the higher the score, stronger the similarity. For each word, it requires two vectors, *x* & *y*. Each vector contains counts of appearances beside each mutual words **(context counts)**. Hence, the vectors are of length equivalent to the number of individual mutual words they appear beside. 
+**Cosine Similarity** function (cossim) is used to calcualte a score representing how contextually similar a pair of tokens are. It is between 0 and 1; the higher the score, stronger the similarity. For each word, it requires two vectors, *x* & *y*. Each vector contains counts of appearances beside each mutual words **(context counts)**. Hence, the vectors are of length equivalent to the number of individual mutual words they appear beside. 
 
 ![Image](https://raw.githubusercontent.com/Tapojit/Polarity-of-words-and-contextual-similarity/master/COSSIM.png)
 
