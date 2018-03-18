@@ -59,7 +59,15 @@ Once you download this repository, *cd* into its directory using *bash*, open th
 *print*ing out top 50 negative tokens will give this output:
 
 ```
-['us-they', 'sudmalis', 'bitchness', 'deomocrats', 'https://t.co/tx\xe2\x80\xa6', 'https://t.co/fxveuydvfx', 'hurt/disregarded', 'https://t.co/uchmaxafrk', 'looser', 'https://t.co/cmz27nmopl', "day's.", 'https://t.co/rjmh9eh\xe2\x80\xa6', 'all-i', 'usa-they', 'https://t.co/rnqhff13az', 'https://t.co/mtehygjxtl', 'democracy\\nleftists', 'look\xf0\x9f\x98\x85', 'wowowowowowowowow', 'winnn', 'ill-they', 'anti-patriotism', 'bumbling', 'https://t.co/qio17l0iqz', 'proclivity', 'chavs', 'congressperson-to-congressperson', 'https://t.co/2tiza9n7\xe2\x80\xa6', 'nap/bad', '\xf0\x9f\x93\x8csaying', 'https://t.co/wwfvgyfolm', 'racist\\', '4cm', 'my-', 'home\xf0\x9f\x98\xad', 'l\xc3\xb8v\xc3\xab', 'https://t.co/lqwhh2qora', 'torbjorn', 'hinduism\\nyet', 'nazi\\', 'india\\nleftists', 'cough*cincy*cough', 'https://t.co/wzz4ndbn7n', '||i', 'https://t.co/qfpq8hcd3l', 'https://t.co/tkzqcrnry8', 'cialis', 'condiment', 'https://t.co/yjikxov0q9', 'https://t.co/itqwxo\xe2\x80\xa6']
+['us-they', 'sudmalis', 'bitchness', 'deomocrats', 'https://t.co/tx\xe2\x80\xa6', 'https://t.co/fxveuydvfx', 
+'hurt/disregarded', 'https://t.co/uchmaxafrk', 'looser', 'https://t.co/cmz27nmopl', "day's.", 
+'https://t.co/rjmh9eh\xe2\x80\xa6', 'all-i', 'usa-they', 'https://t.co/rnqhff13az', 'https://t.co/mtehygjxtl', 
+'democracy\\nleftists', 'look\xf0\x9f\x98\x85', 'wowowowowowowowow', 'winnn', 'ill-they', 'anti-patriotism', 'bumbling', 
+'https://t.co/qio17l0iqz', 'proclivity', 'chavs', 'congressperson-to-congressperson', 'https://t.co/2tiza9n7\xe2\x80\xa6', 
+'nap/bad', '\xf0\x9f\x93\x8csaying', 'https://t.co/wwfvgyfolm', 'racist\\', '4cm', 'my-', 'home\xf0\x9f\x98\xad', 
+'l\xc3\xb8v\xc3\xab', 'https://t.co/lqwhh2qora', 'torbjorn', 'hinduism\\nyet', 'nazi\\', 'india\\nleftists', 
+'cough*cincy*cough', 'https://t.co/wzz4ndbn7n', '||i', 'https://t.co/qfpq8hcd3l', 'https://t.co/tkzqcrnry8', 'cialis', 
+'condiment', 'https://t.co/yjikxov0q9', 'https://t.co/itqwxo\xe2\x80\xa6']
 
 ```
 
