@@ -114,3 +114,5 @@ cosine similarity between university and dog:  0.659230248969
 
 ```
 ## Notes
+
+Context count vectors are often sparse and long, which makes working with them computationally expensive. Hence, [Word2vec embeddings](https://en.wikipedia.org/wiki/Word2vec) are preferred instead. These vectors are dense and come up with more reliable and accurate results than context counts. **stream_cos_sim_calc_word2vec** function in **distsim.py** contains an implementation of *Cosine Similarity* using *Word2vec embeddings*
