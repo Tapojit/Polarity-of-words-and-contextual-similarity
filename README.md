@@ -73,4 +73,13 @@ Once you download this repository, *cd* into its directory using *bash*, open th
 
 ## Contextual Similarity
 
+Two or more words are said to be *contextually similar* when they appear beside a large number of mutual words. For instance, *"cat"* & *"dog"* are contextually similar as they are both animals, hence they share a large number of words they can appear beside.
+
+**Cosine Similarity** function (Cossim) is used to calcualte a score representing how contextually similar a pair of tokens are. It is between 0 and 1; the higher the score, stronger the similarity. For each word, it requires two vectors, *x* & *y*. Each vector contains counts of appearances beside each mutual words(context counts). Hence, the vectors are of length equivalent to the number of individual mutual words they appear beside. 
+
 ![Image](https://raw.githubusercontent.com/Tapojit/Polarity-of-words-and-contextual-similarity/master/COSSIM.png)
+
+The script **distsim.py** contains a function called **cos_sim** for calculating Cosine Similarity, which takes as arguments:
+1. Dictionary containing Bag of Words(BOW) representaion of context counts for each of the pair of words.
+2. First word.
+3. Second word.
