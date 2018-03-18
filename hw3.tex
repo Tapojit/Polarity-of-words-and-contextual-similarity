@@ -1,0 +1,894 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{hw3}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Homework 5: Lexicons and Distributional
+Semantics}\label{homework-5-lexicons-and-distributional-semantics}
+
+This is due on \textbf{Friday, 11/10 (11pm)}
+
+\subsection{How to do this problem
+set}\label{how-to-do-this-problem-set}
+
+Most of these questions require writing Python code and computing
+results, and the rest of them have textual answers. Write all the
+textual answers in this document, show the output of your experiment in
+this document, and implement the functions in the \texttt{python} files.
+
+Submit a PDF of thie .ipynb to Gradescope, and the .ipynb and all python
+files to Moodle.
+
+The assignment has two parts: * In the first part, you will experiment
+with Turney's method to find word polarities in a twitter dataset, given
+some positive and negative seed words. * In the second part, you will
+experiment with distributional and vector semantics.
+
+    \textbf{Your Name: Tapojit Debnath Tapu}
+
+\textbf{List collaborators, and how you collaborated, here:} (see our
+\href{http://people.cs.umass.edu/~brenocon/inlp2017/grading.html}{grading
+and policies page} for details on our collaboration policy).
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{name 1}
+\end{itemize}
+
+    \subsection{Part 1: Lexicon semantics}\label{part-1-lexicon-semantics}
+
+    Recall that PMI of a pair of words, is defined as:
+
+\[PMI(x, y) = log\frac{ P(x, y) }{ P(x)P(y)}\]
+
+The Turney mehod defines a word's polarity as:
+
+\[Polarity(word) = PMI(word, positive\_word)−PMI(word, negative\_word)\]
+
+where the joint probability \(P(w, v)\) or, more specifically,
+\(P(w\ NEAR\ v)\) is the probability of both being "near" each other.
+We'll work with tweets, so it means: if you choose a tweet at random,
+what's the chance it contains both \texttt{w} and \texttt{v}?
+
+(If you look at the Turney method as explained in the SLP3 chapter, the
+"hits" function is a count of web pages that contain at least one
+instance of the two words occurring near each other.)
+
+The positive\_word and negative\_word terms are initially constructed by
+hand. For example: we might start with single positive word
+('excellent') and a single negative word ('bad'). We can also have list
+of positive words ('excellent', 'perfect', 'love', ....) and list of
+negative words ('bad', 'hate', 'filthy',....)
+
+If we're using a seed list of multiple terms, just combine them into a
+single symbol, e.g. all the positive seed words get rewritten to
+POS\_WORD (and similarly for NEG\_WORD). This \(P(w, POS\_WORD)\)
+effectively means the co-ocurrence of \(w\) with any of the terms in the
+list.
+
+For this assignment, we will use twitter dataset which has 349378
+tweets. These tweets are in the file named \texttt{tweets.txt}. These
+are the tweets of one day and filtered such that each tweet contains at
+least one of the seed words we've selected.
+
+    \subsection{Question 1 (15 points)}\label{question-1-15-points}
+
+The file \texttt{tweets.txt} contains around 349,378 tweets with one
+tweet per line. It is a random sample of public tweets, which we
+tokenized with
+\href{https://github.com/myleott/ark-twokenize-py/blob/master/twokenize.py}{twokenize.py's
+tokenizeRawTweetText()}). The text you see has a space between each
+token so you can just use \texttt{.split()} if you want. We also
+filtered tweets to ones that included at least one term from one of
+these seed lists: * Positive seed list: {[}"good", "nice", "love",
+"excellent", "fortunate", "correct", "superior"{]} * Negative seed list:
+{[}"bad", "nasty", "poor", "hate", "unfortunate", "wrong", "inferior"{]}
+
+Each tweet contains at least one positive or negative seed word. Take a
+look at the file (e.g. \texttt{less\textquotesingle{}\ and}grep').
+Implement the Turney's method to calculate polarity scores of all words.
+
+Some things to keep in mind: * Ignore the seed words (i.e. don't
+calculate the polarity of the seed words). * You may want to ignore the
+polarity of words beignning with \texttt{@} or \texttt{\#}.
+
+We recommend that you write code in a python file, but it's up to you.
+
+QUESTION: You'll have to do something to handle zeros in the PMI
+equation. Please explain your and justify your decision about this.
+
+    \textbf{textual answer here}
+
+    If P(x,y) in PMI equation is zero, it is assumed that PMI is zero. For
+instance, for a given word, w, if P(w, POS\_WORD) is zero, then PMI for
+it is zero. PMI for NEG\_WORD is asserted to be negative. IF P(w,
+NEG\_WORD) is zero, PMI for it is zero. PMI for POS\_WORD is asserted to
+be positive. If P(w, POS\_WORD) \& P(w, NEG\_WORD) are zero, then
+polarity is zero. Zero polarity means word is neutral.
+
+    \subsection{Question 2 (5 points)}\label{question-2-5-points}
+
+Print the top 50 most-positive words (i.e. inferred positive words) and
+the 50 most-negative words.
+
+Many of the words won't make sense. Comment on at least two that do make
+sense, and at least two that don't. Why do you think these are happening
+with this dataset and method?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} Write code to print words here}
+        \PY{k+kn}{import} \PY{n+nn}{operator}
+        \PY{k+kn}{from} \PY{n+nn}{collections} \PY{k+kn}{import} \PY{n}{defaultdict}
+        \PY{k+kn}{from} \PY{n+nn}{polarity} \PY{k+kn}{import} \PY{n}{polarity\PYZus{}calc}
+        \PY{n}{polarity}\PY{o}{=}\PY{n}{polarity\PYZus{}calc}\PY{p}{(}\PY{p}{)}
+        \PY{n}{max\PYZus{}50}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n+nb}{sorted}\PY{p}{(}\PY{n}{polarity}\PY{o}{.}\PY{n}{iteritems}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{n}{operator}\PY{o}{.}\PY{n}{itemgetter}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{50}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}
+        \PY{n}{min\PYZus{}50}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n+nb}{sorted}\PY{p}{(}\PY{n}{polarity}\PY{o}{.}\PY{n}{iteritems}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{n}{operator}\PY{o}{.}\PY{n}{itemgetter}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{50}\PY{p}{:}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}
+        \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{50 most positive tokens: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{max\PYZus{}50}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{50 most negative tokens: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{min\PYZus{}50}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+50 most positive tokens:  
+['friend\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}xa4\textbackslash{}x9e\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x8f\textbackslash{}xbd', 'https://t.co/unteosecly', 'cassievers\textbackslash{}xe2\textbackslash{}x98\textbackslash{}xba', 'https://t.co/rcgdsyymir', 'eighteet', 'you\textbackslash{}\textbackslash{}n-i', '-*', 'througho\textbackslash{}xe2\textbackslash{}x80\textbackslash{}xa6', 'one\textbackslash{}\textbackslash{}ngood', 'gf\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x92\textbackslash{}x8d', 'ex\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x97\textbackslash{}x91', 'amiracan', 'lovvveeeee', 'https://t.co/filzv6f2ze', 'dulce\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x98\textbackslash{}xa9', 'https://t.co/lvrki7uwhd', 'you\textbackslash{}xc2\textbackslash{}xa1\textbackslash{}xc2\textbackslash{}xa1\textbackslash{}\textbackslash{}', 'chazelle', 'n-i', 'dirty\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}xa4\textbackslash{}xa2', 'aside\textbackslash{}\textbackslash{}', 'it\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}xa4\textbackslash{}x91', 'https://t.co/p1fyayehnz', '-tb\textbackslash{}\textbackslash{}', 'https://t.co/xketcvmmno', 'https://t.co/4vy3fv70rk', 'https://t.co/38zyfmjco8', '\textbackslash{}xcb\textbackslash{}x97\textbackslash{}xcb\textbackslash{}x8f\textbackslash{}xcb\textbackslash{}x8b', 'https://t.co/pyvhn56pje', 'https://t.co/ve99xlwp0g', 'https://t.co/bnk2hia1mk', 'nori\textbackslash{}xe2\textbackslash{}x80\textbackslash{}xa6', 'forever\textbackslash{}\textbackslash{}n-i', 'todos', 'much\textbackslash{}\textbackslash{}n-i', 'noriega', 'bidadari', 'https://t.co/o1ii42byhl', 'bodoamatlah', '\textbackslash{}xcb\textbackslash{}x8e\textbackslash{}xcb\textbackslash{}x8a\textbackslash{}xcb\textbackslash{}x97', 'girl\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x98\textbackslash{}xad\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x98\textbackslash{}xad\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x98\textbackslash{}xadits', 'luck\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x92\textbackslash{}x9e\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x92\textbackslash{}x9c', '\textbackslash{}xe2\textbackslash{}x9d\textbackslash{}xa4\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x92\textbackslash{}x99\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x92\textbackslash{}x9b\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x92\textbackslash{}x9c', '2017.02', 'https://t.co/hsyskqcnn6', 'octavia', '\textbackslash{}xe2\textbackslash{}x9b\textbackslash{}x88\textbackslash{}xe2\textbackslash{}x9a\textbackslash{}xa1\textbackslash{}xef\textbackslash{}xb8\textbackslash{}x8f\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x98\textbackslash{}x8d', '\textbackslash{}\textbackslash{}n\textbackslash{}\textbackslash{}nfaveeeee', 'looooooovveeee', 'https://t.co/jm\textbackslash{}xe2\textbackslash{}x80\textbackslash{}xa6'] 
+
+50 most negative tokens:  
+['us-they', 'sudmalis', 'bitchness', 'deomocrats', 'https://t.co/tx\textbackslash{}xe2\textbackslash{}x80\textbackslash{}xa6', 'https://t.co/fxveuydvfx', 'hurt/disregarded', 'https://t.co/uchmaxafrk', 'looser', 'https://t.co/cmz27nmopl', "day's.", 'https://t.co/rjmh9eh\textbackslash{}xe2\textbackslash{}x80\textbackslash{}xa6', 'all-i', 'usa-they', 'https://t.co/rnqhff13az', 'https://t.co/mtehygjxtl', 'democracy\textbackslash{}\textbackslash{}nleftists', 'look\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x98\textbackslash{}x85', 'wowowowowowowowow', 'winnn', 'ill-they', 'anti-patriotism', 'bumbling', 'https://t.co/qio17l0iqz', 'proclivity', 'chavs', 'congressperson-to-congressperson', 'https://t.co/2tiza9n7\textbackslash{}xe2\textbackslash{}x80\textbackslash{}xa6', 'nap/bad', '\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x93\textbackslash{}x8csaying', 'https://t.co/wwfvgyfolm', 'racist\textbackslash{}\textbackslash{}', '4cm', 'my-', 'home\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x98\textbackslash{}xad', 'l\textbackslash{}xc3\textbackslash{}xb8v\textbackslash{}xc3\textbackslash{}xab', 'https://t.co/lqwhh2qora', 'torbjorn', 'hinduism\textbackslash{}\textbackslash{}nyet', 'nazi\textbackslash{}\textbackslash{}', 'india\textbackslash{}\textbackslash{}nleftists', 'cough*cincy*cough', 'https://t.co/wzz4ndbn7n', '||i', 'https://t.co/qfpq8hcd3l', 'https://t.co/tkzqcrnry8', 'cialis', 'condiment', 'https://t.co/yjikxov0q9', 'https://t.co/itqwxo\textbackslash{}xe2\textbackslash{}x80\textbackslash{}xa6']
+
+    \end{Verbatim}
+
+    \subsubsection{Textual answer here.}\label{textual-answer-here.}
+
+    Two that make sense: 'looooooovveeee' for positive tokens, since it is
+short for \texttt{love} and 'looser' from negative tokens, which means
+\texttt{loser}. Two that do not make sense: 'octavia' for positive
+tokens and 'condiment' from negative tokens. Both are supposed to be
+neutral words. They do not make sense since word in a tweet is
+considered to be positive or negative if there is a positive or negative
+seed word in said tweet respectively.
+
+    \subsection{Question 3 (5 points)}\label{question-3-5-points}
+
+Now filter out all the words which have total count \textless{} 500, and
+then print top 50 polarity words and bottom 50 polarity words.
+
+Choose some of the words from both the sets of 50 words you got above
+which accoording to you make sense. Again please note, you will find
+many words which don't make sense. Do you think these results are better
+than the results you got in Question-1? Explain why.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} Write code to print words here}
+        \PY{k+kn}{import} \PY{n+nn}{operator}
+        \PY{k+kn}{from} \PY{n+nn}{collections} \PY{k+kn}{import} \PY{n}{defaultdict}
+        \PY{k+kn}{from} \PY{n+nn}{polarity} \PY{k+kn}{import} \PY{n}{polarity\PYZus{}calc}
+        \PY{n}{polarity}\PY{o}{=}\PY{n}{polarity\PYZus{}calc}\PY{p}{(}\PY{n}{filter\PYZus{}500}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+        \PY{n}{max\PYZus{}50}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n+nb}{sorted}\PY{p}{(}\PY{n}{polarity}\PY{o}{.}\PY{n}{iteritems}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{n}{operator}\PY{o}{.}\PY{n}{itemgetter}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{50}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}
+        \PY{n}{min\PYZus{}50}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n+nb}{sorted}\PY{p}{(}\PY{n}{polarity}\PY{o}{.}\PY{n}{iteritems}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{n}{operator}\PY{o}{.}\PY{n}{itemgetter}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{50}\PY{p}{:}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}
+        \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{50 most positive tokens: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{max\PYZus{}50}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{50 most negative tokens: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{min\PYZus{}50}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+50 most positive tokens:  
+['friend\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}xa4\textbackslash{}x9e\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x8f\textbackslash{}xbd', 'https://t.co/unteosecly', 'cassievers\textbackslash{}xe2\textbackslash{}x98\textbackslash{}xba', 'https://t.co/rcgdsyymir', 'eighteet', 'you\textbackslash{}\textbackslash{}n-i', '-*', 'througho\textbackslash{}xe2\textbackslash{}x80\textbackslash{}xa6', 'one\textbackslash{}\textbackslash{}ngood', 'gf\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x92\textbackslash{}x8d', 'ex\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x97\textbackslash{}x91', 'amiracan', 'lovvveeeee', 'https://t.co/filzv6f2ze', 'dulce\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x98\textbackslash{}xa9', 'https://t.co/lvrki7uwhd', 'you\textbackslash{}xc2\textbackslash{}xa1\textbackslash{}xc2\textbackslash{}xa1\textbackslash{}\textbackslash{}', 'chazelle', 'n-i', 'dirty\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}xa4\textbackslash{}xa2', 'aside\textbackslash{}\textbackslash{}', 'it\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}xa4\textbackslash{}x91', 'https://t.co/p1fyayehnz', '-tb\textbackslash{}\textbackslash{}', 'https://t.co/xketcvmmno', 'https://t.co/4vy3fv70rk', 'https://t.co/38zyfmjco8', '\textbackslash{}xcb\textbackslash{}x97\textbackslash{}xcb\textbackslash{}x8f\textbackslash{}xcb\textbackslash{}x8b', 'https://t.co/pyvhn56pje', 'https://t.co/ve99xlwp0g', 'https://t.co/bnk2hia1mk', 'nori\textbackslash{}xe2\textbackslash{}x80\textbackslash{}xa6', 'forever\textbackslash{}\textbackslash{}n-i', 'todos', 'much\textbackslash{}\textbackslash{}n-i', 'noriega', 'bidadari', 'https://t.co/o1ii42byhl', 'bodoamatlah', '\textbackslash{}xcb\textbackslash{}x8e\textbackslash{}xcb\textbackslash{}x8a\textbackslash{}xcb\textbackslash{}x97', 'girl\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x98\textbackslash{}xad\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x98\textbackslash{}xad\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x98\textbackslash{}xadits', 'luck\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x92\textbackslash{}x9e\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x92\textbackslash{}x9c', '\textbackslash{}xe2\textbackslash{}x9d\textbackslash{}xa4\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x92\textbackslash{}x99\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x92\textbackslash{}x9b\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x92\textbackslash{}x9c', '2017.02', 'https://t.co/hsyskqcnn6', 'octavia', '\textbackslash{}xe2\textbackslash{}x9b\textbackslash{}x88\textbackslash{}xe2\textbackslash{}x9a\textbackslash{}xa1\textbackslash{}xef\textbackslash{}xb8\textbackslash{}x8f\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x98\textbackslash{}x8d', '\textbackslash{}\textbackslash{}n\textbackslash{}\textbackslash{}nfaveeeee', 'looooooovveeee', 'https://t.co/jm\textbackslash{}xe2\textbackslash{}x80\textbackslash{}xa6'] 
+
+50 most negative tokens:  
+['us-they', 'sudmalis', 'bitchness', 'deomocrats', 'https://t.co/tx\textbackslash{}xe2\textbackslash{}x80\textbackslash{}xa6', 'https://t.co/fxveuydvfx', 'hurt/disregarded', 'https://t.co/uchmaxafrk', 'looser', 'https://t.co/cmz27nmopl', "day's.", 'https://t.co/rjmh9eh\textbackslash{}xe2\textbackslash{}x80\textbackslash{}xa6', 'all-i', 'usa-they', 'https://t.co/rnqhff13az', 'https://t.co/mtehygjxtl', 'democracy\textbackslash{}\textbackslash{}nleftists', 'look\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x98\textbackslash{}x85', 'wowowowowowowowow', 'winnn', 'ill-they', 'anti-patriotism', 'bumbling', 'https://t.co/qio17l0iqz', 'proclivity', 'chavs', 'congressperson-to-congressperson', 'https://t.co/2tiza9n7\textbackslash{}xe2\textbackslash{}x80\textbackslash{}xa6', 'nap/bad', '\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x93\textbackslash{}x8csaying', 'https://t.co/wwfvgyfolm', 'racist\textbackslash{}\textbackslash{}', '4cm', 'my-', 'home\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x98\textbackslash{}xad', 'l\textbackslash{}xc3\textbackslash{}xb8v\textbackslash{}xc3\textbackslash{}xab', 'https://t.co/lqwhh2qora', 'torbjorn', 'hinduism\textbackslash{}\textbackslash{}nyet', 'nazi\textbackslash{}\textbackslash{}', 'india\textbackslash{}\textbackslash{}nleftists', 'cough*cincy*cough', 'https://t.co/wzz4ndbn7n', '||i', 'https://t.co/qfpq8hcd3l', 'https://t.co/tkzqcrnry8', 'cialis', 'condiment', 'https://t.co/yjikxov0q9', 'https://t.co/itqwxo\textbackslash{}xe2\textbackslash{}x80\textbackslash{}xa6']
+
+    \end{Verbatim}
+
+    \subsubsection{Textual answer here.}\label{textual-answer-here.}
+
+    Words which make sense:
+\textbf{'friend\xf0\x9f\xa4\x9e\xf0\x9f\x8f\xbd',
+'luck\xf0\x9f\x92\x9e\xf0\x9f\x92\x9c'} from positive tokens(Only their
+beginning parts like 'friend' and 'luck' make
+sense).\textless{}br.\textgreater{} words which do not make sense:
+\textbf{'wowowowowowowowow', 'winnn'} from negative tokens, since they
+are supposed to be in positive token group. Results have not improved at
+all; corresponding token sets from question 2 and question 3 are still
+strikingly similar. This may be because most tokens have frequency below
+500. Owing to their low frequency, they are most likely to be associated
+with either positive or negative group, even if high frequency words are
+filtered out.
+
+    \subsection{Question 4 (5 points)}\label{question-4-5-points}
+
+Even after filtering out words with count \textless{} 500, many top-most
+and bottom-most polarity don't make sense. Identify what kind of words
+these are and what can be done to filter them out. You can read some
+tweets in the file to see what's happening.
+
+    \subsubsection{Textual answer here.}\label{textual-answer-here.}
+
+    These "tokens" mostly consist of emojis, like
+\texttt{friend\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}xa4\textbackslash{}x9e\textbackslash{}xf0\textbackslash{}x9f\textbackslash{}x8f\textbackslash{}xbd}.
+The 'friend' part is distinguishable, but characters after it represent
+emojis. Moreover, there are a lot of html links too, like
+\texttt{https://t.co/jm\textbackslash{}xe2\textbackslash{}x80\textbackslash{}xa6},
+which should be removed. HTML links can be identified by checking
+whether the first 4 characters of a token are equivalent to the string
+'http'. If fourth character from end of token string is a backslash
+\texttt{\textbackslash{}}, then it means this particular token consist
+mostly of emojis and can be removed.
+
+    \section{Part-2: Distributional
+Semantics}\label{part-2-distributional-semantics}
+
+    \subsection{Cosine Similarity}\label{cosine-similarity}
+
+    Recall that, where \(i\) indexes over the context types, cosine
+similarity is defined as follows. \(x\) and \(y\) are both vectors of
+context counts (each for a different word), where \(x_i\) is the count
+of context \(i\).
+
+\[cossim(x,y) = \frac{ \sum_i x_i y_i }{ \sqrt{\sum_i x_i^2} \sqrt{\sum_i y_i^2} }\]
+
+The nice thing about cosine similarity is that it is normalized: no
+matter what the input vectors are, the output is between 0 and 1. One
+way to think of this is that cosine similarity is just, um, the cosine
+function, which has this property (for non-negative \(x\) and \(y\)).
+Another way to think of it is, to work through the situations of maximum
+and minimum similarity between two context vectors, starting from the
+definition above.
+
+Note: a good way to understand the cosine similarity function is that
+the numerator cares about whether the \(x\) and \(y\) vectors are
+correlated. If \(x\) and \(y\) tend to have high values for the same
+contexts, the numerator tends to be big. The denominator can be thought
+of as a normalization factor: if all the values of \(x\) are really
+large, for example, dividing by the square root of their sum-of-squares
+prevents the whole thing from getting arbitrarily large. In fact,
+dividing by both these things (aka their norms) means the whole thing
+can't go higher than 1.
+
+In this problem we'll work with vectors of raw context counts. (As you
+know, this is not necessarily the best representation.)
+
+    \subsection{Question 5 (5 points)}\label{question-5-5-points}
+
+See the file \texttt{nytcounts.university\_cat\_dog}, which contains
+context count vectors for three words: ``dog'', ``cat'', and
+``university''. These are immediate left and right contexts from a New
+York Times corpus. You can open the file in a text editor since it's
+quite small.
+
+Write a function which takes context count dictionaries of two words and
+calculates cosine similarity between these two words. The function
+should return a number beween 0 and 1. Briefly comment on whether the
+relative simlarities make sense.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{distsim}\PY{p}{;} \PY{n+nb}{reload}\PY{p}{(}\PY{n}{distsim}\PY{p}{)}
+        
+        \PY{n}{word\PYZus{}to\PYZus{}ccdict} \PY{o}{=} \PY{n}{distsim}\PY{o}{.}\PY{n}{load\PYZus{}contexts}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{nytcounts.university\PYZus{}cat\PYZus{}dog}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{cat\PYZus{}dog\PYZus{}sim}\PY{o}{=}\PY{n}{distsim}\PY{o}{.}\PY{n}{cos\PYZus{}sim}\PY{p}{(}\PY{n}{word\PYZus{}to\PYZus{}ccdict}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cat}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{cat\PYZus{}uni\PYZus{}sim}\PY{o}{=}\PY{n}{distsim}\PY{o}{.}\PY{n}{cos\PYZus{}sim}\PY{p}{(}\PY{n}{word\PYZus{}to\PYZus{}ccdict}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cat}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{university}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{dog\PYZus{}uni\PYZus{}sim}\PY{o}{=}\PY{n}{distsim}\PY{o}{.}\PY{n}{cos\PYZus{}sim}\PY{p}{(}\PY{n}{word\PYZus{}to\PYZus{}ccdict}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{university}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} write code here to show output (i.e. cosine similarity between these words.)}
+        \PY{c+c1}{\PYZsh{} We encourage you to write other functions in distsim.py itself.}
+        \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{cosine similarity between cat and dog: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{cat\PYZus{}dog\PYZus{}sim}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cosine similarity between cat and university: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{cat\PYZus{}uni\PYZus{}sim}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cosine similarity between university and dog: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{dog\PYZus{}uni\PYZus{}sim}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+file nytcounts.university\_cat\_dog has contexts for 3 words
+
+cosine similarity between cat and dog:  0.966891672715 
+
+cosine similarity between cat and university:  0.660442421144 
+
+cosine similarity between university and dog:  0.659230248969
+
+    \end{Verbatim}
+
+    \textbf{Write your response here:}
+
+    They do make sense, since cosine similarity between \texttt{cat} \&
+\texttt{dog} is highest(both are animals) in comparison with that
+between \texttt{cat} \& \texttt{university} and \texttt{dog} \&
+\texttt{university}.
+
+    \subsection{Question 6 (20 points)}\label{question-6-20-points}
+
+Explore similarities in \texttt{nytcounts.4k}, which contains context
+counts for about 4000 words in a sample of New York Times articles. The
+news data was lowercased and URLs were removed. The context counts are
+for the 2000 most common words in twitter, as well as the most common
+2000 words in the New York Times. (But all context counts are from New
+York Times.) The context counts only contain contexts that appeared for
+more than one word. The file has three tab-separate fields: the word,
+its count, and a JSON-encoded dictionary of its context counts. You'll
+see it's just counts of the immediate left/right neighbors.
+
+Choose \textbf{six} words. For each, show the output of 20 nearest words
+(use cosine similarity as distance metric). Comment on whether the
+output makes sense. Comment on whether this approach to distributional
+similarity makes more or less sense for certain terms. Four of your
+words should be:
+
+\begin{itemize}
+\tightlist
+\item
+  a name (for example: person, organization, or location)
+\item
+  a common noun
+\item
+  an adjective
+\item
+  a verb
+\end{itemize}
+
+You may also want to try exploring further words that are returned from
+a most-similar list from one of these. You can think of this as
+traversing the similarity graph among words.
+
+\emph{Implementation note:} On my laptop it takes several hundred MB of
+memory to load it into memory from the \texttt{load\_contexts()}
+function. If you don't have enough memory available, your computer will
+get very slow because the OS will start swapping. If you have to use a
+machine without that much memory available, you can instead implement in
+a streaming approach by using the \texttt{stream\_contexts()} generator
+function to access the data; this lets you iterate through the data from
+disk, one vector at a time, without putting everything into memory. You
+can see its use in the loading function. (You could also alternatively
+use a key-value or other type of database, but that's too much work for
+this assignment.)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{distsim}\PY{p}{;} \PY{n+nb}{reload}\PY{p}{(}\PY{n}{distsim}\PY{p}{)}
+        \PY{k+kn}{import} \PY{n+nn}{operator}
+        \PY{n}{word\PYZus{}list}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{stock}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{limited}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{inning}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{yellow}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{saved}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{paris}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+        
+        \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{word\PYZus{}list}\PY{p}{:}
+            \PY{n}{dict\PYZus{}cos\PYZus{}sim}\PY{o}{=}\PY{n}{distsim}\PY{o}{.}\PY{n}{stream\PYZus{}cos\PYZus{}sim\PYZus{}calc}\PY{p}{(}\PY{n}{word}\PY{p}{)}
+            \PY{n}{near\PYZus{}20}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n+nb}{sorted}\PY{p}{(}\PY{n}{dict\PYZus{}cos\PYZus{}sim}\PY{o}{.}\PY{n}{iteritems}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{n}{operator}\PY{o}{.}\PY{n}{itemgetter}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{20}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}
+            
+            \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{20 words nearest to }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{word}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{near\PYZus{}20}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}Provide your answer below; perhaps in another cell so you don\PYZsq{}t have to reload the data each time}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+20 words nearest to  stock :
+  ['state', 'bathroom', 'ball', 'mood', 'government', 'sun', 'gym', 'title', 'overall', 'primary', 'roof', 'budget', 'brain', 'game', 'future', 'shooting', 'economy', 'heat', 'film', 'bond'] 
+
+
+20 words nearest to  limited :
+  ['desire', 'closer', 'required', 'wise', 'continuing', 'hard', 'crucial', 'loyal', 'related', 'guide', 'necessary', 'chance', 'plan', 'quick', 'close', 'struggling', 'difficult', 'commitment', 'trip', 'happy'] 
+
+
+20 words nearest to  inning :
+  ['worldwide', 'partners', 'lane', 'session', 'floor', 'grade', 'cemetery', 'term', 'garage', 'street', 'systems', 'base', 'time', 'films', 'texts', 'foundation', 'quarter', 'avenue', 'road', 'movement'] 
+
+
+20 words nearest to  yellow :
+  ['pink', 'hip', 'fashion', 'sweet', 'green', 'gorgeous', 'cheap', 'quiet', 'fat', 'dry', 'bright', 'warm', 'black', 'dirty', 'rich', 'fresh', 'sexy', 'chicken', 'soft', 'pizza'] 
+
+
+20 words nearest to  saved :
+  ['raised', 'made', 'kept', 'missed', 'lost', 'left', 'given', 'changed', 'joined', 'rejected', 'visited', 'supported', 'pushed', 'won', 'stopped', 'watched', 'reached', 'ordered', 'accepted', 'blocked'] 
+
+
+20 words nearest to  paris :
+  ['europe', 'afghanistan', '1995', '1994', '1997', '1996', '1999', '1998', 'washington', 'baghdad', '2002', '2003', '2000', '2001', 'london', 'september', 'jail', 'atlanta', 'iraq', 'manhattan'] 
+
+
+    \end{Verbatim}
+
+    \textbf{Textual response} For words in the word list like \emph{yellow},
+\emph{paris}, respective 20 nearest words obtained for each of them make
+sense. For instance, for \emph{yellow}, many words closest to it are
+also colors. For \emph{paris}, many words closest to it are names of
+places and cities. But for \emph{stock}, \emph{limited}, \emph{saved}
+and \emph{inning}, results are more sparse. But still, cosine similarity
+algorithm picked up some words very close to their respective concepts.
+In case of \emph{stock}, words like \emph{budget, economy, brain,
+government} were closest to it. For terms with very few words in same
+category as themselves (like \emph{stock}), the cosine similarity
+algorithm does not perform so well. But in case of adjectives and nouns
+which fall within categories like color, places, the algorithm performs
+very well.
+
+    \subsection{Question 7 (10 points)}\label{question-7-10-points}
+
+In the next several questions, you'll examine similarities in trained
+word embeddings, instead of raw context counts.
+
+See the file \texttt{nyt\_word2vec.university\_cat\_dog}, which contains
+word embedding vectors pretrained by word2vec {[}1{]} for three words:
+``dog'', ``cat'', and ``university'', from the same corpus. You can open
+the file in a text editor since it's quite small.
+
+Write a function which takes word embedding vectors of two words and
+calculates cossine similarity between these 2 words. The function should
+return a number beween -1 and 1. Briefly comment on whether the relative
+simlarities make sense.
+
+\emph{Implementation note:} Notice that the inputs of this function are
+numpy arrays (v1 and v2). If you are not very familiar with the basic
+operation in numpy, you can find some examples in the basic operation
+section here: https://docs.scipy.org/doc/numpy-dev/user/quickstart.html
+
+If you know how to use Matlab but haven't tried numpy before, the
+following link should be helpful:
+https://docs.scipy.org/doc/numpy-dev/user/numpy-for-matlab-users.html
+
+{[}1{]} Mikolov, Tomas, et al. "Distributed representations of words and
+phrases and their compositionality." NIPS 2013.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{distsim}\PY{p}{;} \PY{n+nb}{reload}\PY{p}{(}\PY{n}{distsim}\PY{p}{)}
+        
+        \PY{n}{word\PYZus{}to\PYZus{}vec\PYZus{}dict} \PY{o}{=} \PY{n}{distsim}\PY{o}{.}\PY{n}{load\PYZus{}word2vec}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{nyt\PYZus{}word2vec.university\PYZus{}cat\PYZus{}dog}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        
+        \PY{n}{cat\PYZus{}dog\PYZus{}sim}\PY{o}{=}\PY{n}{distsim}\PY{o}{.}\PY{n}{cos\PYZus{}sim\PYZus{}word2vec}\PY{p}{(}\PY{n}{word\PYZus{}to\PYZus{}vec\PYZus{}dict}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cat}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{cat\PYZus{}uni\PYZus{}sim}\PY{o}{=}\PY{n}{distsim}\PY{o}{.}\PY{n}{cos\PYZus{}sim\PYZus{}word2vec}\PY{p}{(}\PY{n}{word\PYZus{}to\PYZus{}vec\PYZus{}dict}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cat}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{university}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{dog\PYZus{}uni\PYZus{}sim}\PY{o}{=}\PY{n}{distsim}\PY{o}{.}\PY{n}{cos\PYZus{}sim\PYZus{}word2vec}\PY{p}{(}\PY{n}{word\PYZus{}to\PYZus{}vec\PYZus{}dict}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{university}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{cosine similarity between cat and dog: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{cat\PYZus{}dog\PYZus{}sim}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cosine similarity between cat and university: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{cat\PYZus{}uni\PYZus{}sim}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cosine similarity between university and dog: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{dog\PYZus{}uni\PYZus{}sim}
+        \PY{c+c1}{\PYZsh{} write code here to show output (i.e. cosine similarity between these words.)}
+        \PY{c+c1}{\PYZsh{} We encourage you to write other functions in distsim.py itself. }
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+cosine similarity between cat and dog:  0.827517295965 
+
+cosine similarity between cat and university:  -0.205394745036 
+
+cosine similarity between university and dog:  -0.190753135501
+
+    \end{Verbatim}
+
+    \textbf{Write your response here:} They do make sense. Cosine similarity
+between cat and dog is high and positive, whereas that between cat and
+university \& dog and university is negative.
+
+    \subsection{Question 8 (20 points)}\label{question-8-20-points}
+
+Repeat the process you did in the question 6, but now use dense vector
+from word2vec. Comment on whether the outputs makes sense. Compare the
+outputs of using nearest words on word2vec and the outputs on sparse
+context vector (so we suggest you to use the same words in question 6).
+Which method works better on the query words you choose. Please brief
+explain why one method works better than other in each case.
+
+Not: we used the default parameters of word2vec in
+\href{https://radimrehurek.com/gensim/models/word2vec.html}{gensim} to
+get word2vec word embeddings.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{distsim}
+        \PY{k+kn}{import} \PY{n+nn}{operator}
+        \PY{n}{word\PYZus{}list}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{stock}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{limited}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{inning}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{yellow}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{saved}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{paris}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+        
+        \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{word\PYZus{}list}\PY{p}{:}
+            \PY{n}{dict\PYZus{}cos\PYZus{}sim}\PY{o}{=}\PY{n}{distsim}\PY{o}{.}\PY{n}{stream\PYZus{}cos\PYZus{}sim\PYZus{}calc\PYZus{}word2vec}\PY{p}{(}\PY{n}{word}\PY{p}{)}
+            \PY{n}{near\PYZus{}20}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n+nb}{sorted}\PY{p}{(}\PY{n}{dict\PYZus{}cos\PYZus{}sim}\PY{o}{.}\PY{n}{iteritems}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{n}{operator}\PY{o}{.}\PY{n}{itemgetter}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{20}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}
+            
+            \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{20 words nearest to }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{word}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{near\PYZus{}20}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}Provide your answer below}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+20 words nearest to  stock :
+  ['shareholders', 'debt', 'investors', 'exchange', 'profit', 'price', 'dollar', 'sale', 'shares', 'sales', 'securities', 'market', 'inflation', 'trading', 'earnings', 'stocks', 'markets', 'investment', 'profits', 'bond'] 
+
+
+20 words nearest to  limited :
+  ['available', 'strong', 'necessary', 'increased', 'providing', 'certain', 'required', 'crucial', 'direct', 'specific', 'critical', 'weak', 'combined', 'significant', 'basic', 'long-term', 'increasing', 'overall', 'positive', 'common'] 
+
+
+20 words nearest to  inning :
+  ['scored', 'mets', 'ball', 'innings', 'n.b.a', 'sixth', 'leg', 'pitcher', 'ninth', 'eighth', 'hitting', 'bout', 'game', 'pistons', 'pitch', 'hole', 'quarter', 'round', 'spurs', 'yankees'] 
+
+
+20 words nearest to  yellow :
+  ['pink', 'blue', 'tree', 'gray', 'leather', 'metal', 'shorts', 'jeans', 'tiny', 'lights', 'bright', 'green', 'shirts', 'smoke', 'wet', 'bucket', 'thick', 'sky', 'wings', 'pants'] 
+
+
+20 words nearest to  saved :
+  ['loved', 'raised', 'save', 'missed', 'lost', 'noticed', 'gotten', 'changed', 'liked', 'paid', 'hurt', 'discovered', 'returned', 'dropped', 'survived', 'collected', 'learned', 'removed', 'brought', 'bought'] 
+
+
+20 words nearest to  paris :
+  ['el', 'del', 'australia', 'italy', 'la', 'madrid', 'hotel', 'royal', 'france', '1960', 'de', 'london', 'japan', '1996', 'germany', 'argentina', 'chelsea', 'chicago', 'spain', 'restaurant'] 
+
+
+    \end{Verbatim}
+
+    For dense vectors, the outputs make way more sense, hence this method
+works the best. In case of \emph{stock}, words closest to it are more
+relatable in this case compared to sparse vectors, such as
+\emph{shareholders}, \emph{debt}, \emph{investors}, etc. It is the same
+case for \emph{inning}, since words closest to it are \emph{scored,
+mets, ball}, etc. Unlike dense vectors, sparse vectors contain mostly
+zeros. Hence, many words which are actually contextually similar to the
+given word are left out when sparse vectors are used. For dense vectors,
+very few values are zero, hence contextually similar words do not get
+left out.
+
+    \subsection{Question 9 (15 points)}\label{question-9-15-points}
+
+An interesting thing to try with word embeddings is analogical reasoning
+tasks. In the following example, it's intended to solve the analogy
+question "king is to man as what is to woman?", or in SAT-style
+notation,
+
+king : man :: \_\_\_\_ : woman
+
+Some research has proposed to use additive operations on word embeddings
+to solve the analogy: take the vector \((v_{king}-v_{man}+v_{woman})\)
+and find the most-similar word to it. One way to explain this idea: if
+you take "king", get rid of its attributes/contexts it shares with
+"man", and add in the attributes/contexts of "woman", hopefully you'll
+get to a point in the space that has king-like attributes but the "man"
+ones replaced with "woman" ones.
+
+Show the output for 20 closest words you get by trying to solve that
+analogy with this method. Did it work?
+
+Please come up with another analogical reasoning task (another triple of
+words), and output the answer using the same method. Comment on whether
+the output makes sense. If the output makes sense, explain why we can
+capture such relation between words using an unsupervised algorithm.
+Where does the information come from? On the other hand, if the output
+does not make sense, propose an explanation why the algorithm fails on
+this case.
+
+Note that the word2vec is trained in an unsupervised manner just with
+distributional statistics; it is interesting that it can apparently do
+any reasoning at all. For a critical view, see
+\href{http://www.aclweb.org/anthology/W/W16/W16-2503.pdf}{Linzen 2016}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} Write code to show output here.}
+        \PY{k+kn}{import} \PY{n+nn}{distsim}
+        \PY{k+kn}{import} \PY{n+nn}{operator}
+        
+        \PY{n}{d}\PY{o}{=}\PY{n}{distsim}\PY{o}{.}\PY{n}{king\PYZus{}queen\PYZus{}analogy}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{king}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{man}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{woman}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{near\PYZus{}20}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n+nb}{sorted}\PY{p}{(}\PY{n}{d}\PY{o}{.}\PY{n}{iteritems}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{n}{operator}\PY{o}{.}\PY{n}{itemgetter}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{20}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}
+        
+        \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{20 closest words for the analogy }\PY{l+s+se}{\PYZbs{}\PYZdq{}}\PY{l+s+s2}{king : man :: \PYZus{}\PYZus{}\PYZus{}\PYZus{} : woman}\PY{l+s+se}{\PYZbs{}\PYZdq{}}\PY{l+s+s2}{: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{near\PYZus{}20}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        
+        
+        \PY{n}{d2}\PY{o}{=}\PY{n}{distsim}\PY{o}{.}\PY{n}{king\PYZus{}queen\PYZus{}analogy}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{france}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{paris}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{madrid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{near\PYZus{}20\PYZus{}d2}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n+nb}{sorted}\PY{p}{(}\PY{n}{d2}\PY{o}{.}\PY{n}{iteritems}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{n}{operator}\PY{o}{.}\PY{n}{itemgetter}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{20}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}
+        
+        \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{20 closest words for the analogy }\PY{l+s+se}{\PYZbs{}\PYZdq{}}\PY{l+s+s2}{france : paris :: \PYZus{}\PYZus{} : madrid}\PY{l+s+se}{\PYZbs{}\PYZdq{}}\PY{l+s+s2}{: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{near\PYZus{}20\PYZus{}d2}  
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+20 closest words for the analogy "king : man :: \_\_\_\_ : woman":  
+['king', 'singer', 'woman', 'daughter', 'elizabeth', 'clark', 'mother', 'queen', 'royal', 'sister', 'prince', 'mary', 'kim', 'grandma', 'mama', 'lord', 'girl', 'wedding', 'princess', 'husband'] 
+
+
+20 closest words for the analogy "france : paris :: \_\_ : madrid":  
+['ukraine', 'brazil', 'europe', 'korea', 'china', 'afghanistan', 'africa', 'india', 'france', 'arab', 'britain', 'germany', 'canada', 'japan', 'terrorism', 'hamas', 'sunni', 'russia', 'spain', 'iran']
+
+    \end{Verbatim}
+
+    \subsubsection{Textual answer here.}\label{textual-answer-here.}
+
+    Yes, the analogy does work. Some words from list of 20 closest are:
+\textbf{elizabeth, queen, royal, mary, princess} All of the words above
+allude to a woman of royalty and/or proper name of actual queens, such
+as \emph{elizabeth, mary}. Analogy for my analysis is: \textbf{france is
+to paris as what is to madrid}? Therefore, in SAT-style notation: france
+: paris :: \_\_ : madrid For my analogy, the method does work. The
+target answer is \textbf{spain}, a country. The closest words returned
+are almost all countries, which is what was desired. Besides
+\textbf{spain} being one of the words in the list of 20 closest words,
+some of the other countries present are \emph{brazil, ukraine, korea}.
+There are also names of continents in the list, like \emph{europe,
+africa}. The unsupervised algorithm here determined clusters of words
+which are related to each other. In a given tweet, people will talk
+about a particular topic only, which leads to usage of contextually
+related words in said tweet. For instance, in a tweet about countries to
+visit, many words used will be associated with countries or will be
+names of countries. If the tweet is about France, there is a good chance
+Paris will be mentioned too. So, the unsupervised algorithm obtains
+clusters alluding to relationships between words, such as that between
+names of countries, a country and its city, etc.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
