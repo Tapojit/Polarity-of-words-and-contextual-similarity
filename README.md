@@ -44,7 +44,25 @@ Once you download this repository, *cd* into its directory using *bash*, open th
 *print*ing out top 50 positive tokens will give this output:
 
 ```
-['friend\xf0\x9f\xa4\x9e\xf0\x9f\x8f\xbd', 'https://t.co/unteosecly', 'cassievers\xe2\x98\xba', 'https://t.co/rcgdsyymir', 'eighteet', 'you\\n-i', '-*', 'througho\xe2\x80\xa6', 'one\\ngood', 'gf\xf0\x9f\x92\x8d', 'ex\xf0\x9f\x97\x91', 'amiracan', 'lovvveeeee', 'https://t.co/filzv6f2ze', 'dulce\xf0\x9f\x98\xa9', 'https://t.co/lvrki7uwhd', 'you\xc2\xa1\xc2\xa1\\', 'chazelle', 'n-i', 'dirty\xf0\x9f\xa4\xa2', 'aside\\', 'it\xf0\x9f\xa4\x91', 'https://t.co/p1fyayehnz', '-tb\\', 'https://t.co/xketcvmmno', 'https://t.co/4vy3fv70rk', 'https://t.co/38zyfmjco8', '\xcb\x97\xcb\x8f\xcb\x8b', 'https://t.co/pyvhn56pje', 'https://t.co/ve99xlwp0g', 'https://t.co/bnk2hia1mk', 'nori\xe2\x80\xa6', 'forever\\n-i', 'todos', 'much\\n-i', 'noriega', 'bidadari', 'https://t.co/o1ii42byhl', 'bodoamatlah', '\xcb\x8e\xcb\x8a\xcb\x97', 'girl\xf0\x9f\x98\xad\xf0\x9f\x98\xad\xf0\x9f\x98\xadits', 'luck\xf0\x9f\x92\x9e\xf0\x9f\x92\x9c', '\xe2\x9d\xa4\xf0\x9f\x92\x99\xf0\x9f\x92\x9b\xf0\x9f\x92\x9c', '2017.02', 'https://t.co/hsyskqcnn6', 'octavia', '\xe2\x9b\x88\xe2\x9a\xa1\xef\xb8\x8f\xf0\x9f\x98\x8d', '\\n\\nfaveeeee', 'looooooovveeee', 'https://t.co/jm\xe2\x80\xa6'] 
+['friend\xf0\x9f\xa4\x9e\xf0\x9f\x8f\xbd', 'https://t.co/unteosecly', 'cassievers\xe2\x98\xba', 'https://t.co/rcgdsyymir',
+
+'eighteet', 'you\\n-i', '-*', 'througho\xe2\x80\xa6', 'one\\ngood', 'gf\xf0\x9f\x92\x8d', 'ex\xf0\x9f\x97\x91', 'amiracan', 
+
+'lovvveeeee', 'https://t.co/filzv6f2ze', 'dulce\xf0\x9f\x98\xa9', 'https://t.co/lvrki7uwhd', 'you\xc2\xa1\xc2\xa1\\', 
+
+'chazelle', 'n-i', 'dirty\xf0\x9f\xa4\xa2', 'aside\\', 'it\xf0\x9f\xa4\x91', 'https://t.co/p1fyayehnz', '-tb\\', 
+
+'https://t.co/xketcvmmno', 'https://t.co/4vy3fv70rk', 'https://t.co/38zyfmjco8', '\xcb\x97\xcb\x8f\xcb\x8b', 
+
+'https://t.co/pyvhn56pje', 'https://t.co/ve99xlwp0g', 'https://t.co/bnk2hia1mk', 'nori\xe2\x80\xa6', 'forever\\n-i', 'todos', 
+
+'much\\n-i', 'noriega', 'bidadari', 'https://t.co/o1ii42byhl', 'bodoamatlah', '\xcb\x8e\xcb\x8a\xcb\x97', 
+
+'girl\xf0\x9f\x98\xad\xf0\x9f\x98\xad\xf0\x9f\x98\xadits', 'luck\xf0\x9f\x92\x9e\xf0\x9f\x92\x9c', 
+
+'\xe2\x9d\xa4\xf0\x9f\x92\x99\xf0\x9f\x92\x9b\xf0\x9f\x92\x9c', '2017.02', 'https://t.co/hsyskqcnn6', 'octavia', 
+
+'\xe2\x9b\x88\xe2\x9a\xa1\xef\xb8\x8f\xf0\x9f\x98\x8d', '\\n\\nfaveeeee', 'looooooovveeee', 'https://t.co/jm\xe2\x80\xa6'] 
 
 ```
 *print*ing out top 50 negative tokens will give this output:
